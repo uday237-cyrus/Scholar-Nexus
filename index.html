@@ -137,20 +137,21 @@
         font-size: 15px;
       }
 
-      .center-image {
-        display: flex;
-        justify-content: center;
-        margin: 30px 0 40px;
-        padding: 0 20px;
-      }
+     .center-image img {
+  width: 100%;
+  height: auto;
+  display: block; /* remove inline gaps */
+  object-fit: cover; /* crops neatly if aspect ratio differs */
+}
 
-      .center-image img {
-        width: 100%;
-        max-width: 900px;
-        height: auto;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
+
+     .center-image {
+  width: 100%;
+  max-width: none; 
+  padding: 0;
+  margin: 30px 0;
+}
+
 
       main {
         padding: 40px;
