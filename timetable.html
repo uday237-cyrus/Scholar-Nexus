@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time Table - Scholar Nexus</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f4f8;
+        color: #333;
+      }
+
+      .header {
+        background-color: #2c3e50;
+        color: #ecf0f1;
+        text-align: center;
+        padding: 40px 20px;
+        font-size: 40px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .title {
+        text-align: center;
+        font-size: 32px;
+        color: #2980b9;
+        font-weight: bold;
+        margin-bottom: 30px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+
+      th,
+      td {
+        padding: 16px;
+        text-align: center;
+      }
+
+      th {
+        background-color: #3498db;
+        color: white;
+        text-transform: uppercase;
+        font-size: 16px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      tr:hover {
+        background-color: #ecf0f1;
+        cursor: pointer;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 30px;
+        font-size: 18px;
+        color: #2980b9;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      .back-link:hover {
+        color: #3498db;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          margin: 20px 10px;
+          padding: 25px;
+        }
+        .title {
+          font-size: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">DRK College - Time Table</div>
+
+    <div class="container">
+      <div class="title">CSE-A Time Table</div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>9:00 - 10:30</td>
+            <td>DM (Theory)</td>
+            <td>DBMS (Theory)</td>
+            <td>DM (Theory)</td>
+            <td>BEFA (Theory)</td>
+            <td>SE (Theory)</td>
+            <td>OS (Theory)</td>
+          </tr>
+          <tr>
+            <td>10:30 - 12:00</td>
+            <td>DBMS (Theory)</td>
+            <td>BEFA (Theory)</td>
+            <td>OS (Theory)</td>
+            <td>SE (Theory)</td>
+            <td>COI (Theory)</td>
+            <td>OS (Lab)</td>
+          </tr>
+          <tr>
+            <td>12:00 - 1:30</td>
+            <td>COI (Theory)</td>
+            <td>OS (Theory)</td>
+            <td>DBMS (Theory)</td>
+            <td>SE (Theory)</td>
+            <td>DM (Theory)</td>
+            <td>DBMS (Lab)</td>
+          </tr>
+          <tr>
+            <td>1:30 - 3:00</td>
+            <td>SE (Theory)</td>
+            <td>COI (Theory)</td>
+            <td>SE (Theory)</td>
+            <td>COI (Theory)</td>
+            <td>DBMS (Theory)</td>
+            <td>DBMS (Lab)</td>
+          </tr>
+          <tr>
+            <td>3:00 - 4:30</td>
+            <td>OS (Lab)</td>
+            <td>DBMS (Lab)</td>
+            <td>COI (Lab)</td>
+            <td>OS (Lab)</td>
+            <td>BEFA (Lab)</td>
+            <td>OS (Lab)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="back-link" onclick="window.history.back();">
+        Back to Student Page
+      </div>
+    </div>
+  </body>
+</html>

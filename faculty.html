@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Faculty - DRK College</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+      .container {
+        display: flex;
+        max-width: 900px;
+        margin: 40px auto;
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      .sidebar {
+        background-color: #5e8b7e;
+        color: white;
+        width: 30%;
+        padding: 30px 20px;
+      }
+      .sidebar h2 {
+        font-size: 22px;
+        margin-top: 0;
+      }
+      .sidebar p {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .contact {
+        margin-top: 30px;
+      }
+      .contact p {
+        margin: 8px 0;
+      }
+      .main-content {
+        padding: 30px;
+        width: 70%;
+      }
+      .main-content h1 {
+        margin-top: 0;
+        color: #2c3e50;
+      }
+      .section {
+        margin-bottom: 30px;
+      }
+      .section h3 {
+        margin-bottom: 10px;
+        color: #34495e;
+      }
+      .section p {
+        margin: 5px 0;
+        font-size: 15px;
+      }
+      .skill-level {
+        display: flex;
+        gap: 5px;
+      }
+      .dot {
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        background-color: #ccc;
+      }
+      .dot.filled {
+        background-color: #5e8b7e;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <div class="profile-pic">
+          <img
+            src="https://via.placeholder.com/100"
+            alt="Profile Picture"
+            style="border-radius: 50%; margin-bottom: 20px"
+          />
+        </div>
+        <h2>Prof. Neha Sharma</h2>
+        <p>
+          Assistant Professor in Computer Science with a focus on
+          student-centric learning and innovative teaching methods.
+        </p>
+        <div class="contact">
+          <p>
+            <strong>Phone:</strong><br />
+            +91-9876543220
+          </p>
+          <p>
+            <strong>Email:</strong><br />
+            neha.sharma@drkcollege.edu
+          </p>
+          <p>
+            <strong>Location:</strong><br />
+            Hyderabad, India
+          </p>
+        </div>
+      </div>
+      <div class="main-content">
+        <h1>Faculty Member</h1>
+        <div class="section">
+          <h3>Professional Experience</h3>
+          <p>
+            <strong>Assistant Professor</strong> — DRK College (2015–Present)
+          </p>
+          <p>
+            Teaching undergraduate courses in Web Development and Data
+            Structures, and mentoring final year projects.
+          </p>
+        </div>
+        <div class="section">
+          <h3>Education</h3>
+          <p>M.Tech in Computer Science</p>
+        </div>
+        <div class="section">
+          <h3>Certifications</h3>
+          <p>Certified Web Development Instructor</p>
+          <p>AICTE FDP on Data Structures</p>
+        </div>
+        <div class="section">
+          <h3>Skills</h3>
+          <p>Web Development</p>
+          <div class="skill-level">
+            <span class="dot filled"></span>
+            <span class="dot filled"></span>
+            <span class="dot filled"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+          <p>Data Structures</p>
+          <div class="skill-level">
+            <span class="dot filled"></span>
+            <span class="dot filled"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

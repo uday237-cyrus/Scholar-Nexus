@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attendance - Scholar Nexus</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f4f8;
+        color: #333;
+      }
+
+      .header {
+        background-color: #2c3e50;
+        color: #ecf0f1;
+        text-align: center;
+        padding: 40px 20px;
+        font-size: 40px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .title {
+        text-align: center;
+        font-size: 32px;
+        color: #2980b9;
+        font-weight: bold;
+        margin-bottom: 30px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+
+      th,
+      td {
+        padding: 16px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #3498db;
+        color: white;
+        text-transform: uppercase;
+        font-size: 16px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      tr:hover {
+        background-color: #ecf0f1;
+        cursor: pointer;
+      }
+
+      .attendance-detail {
+        display: none;
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #ecf0f1;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .attendance-detail h3 {
+        font-size: 24px;
+        color: #2980b9;
+      }
+
+      .attendance-detail table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+      }
+
+      .attendance-detail table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+
+      .attendance-detail th {
+        background-color: #2980b9;
+        color: white;
+        font-size: 14px;
+      }
+
+      .sub-class-option {
+        cursor: pointer;
+        color: #2980b9;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+
+      .sub-class-option:hover {
+        color: #3498db;
+        text-decoration: none;
+      }
+
+      .spacing {
+        margin-top: 40px;
+      }
+
+      .pie-chart {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .pie-chart canvas {
+        width: 220px !important;
+        height: 220px !important;
+        filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.4));
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          margin: 20px 10px;
+          padding: 25px;
+        }
+        .title {
+          font-size: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">DRK College</div>
+
+    <div class="container">
+      <div class="title">Attendance</div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Sl.No</th>
+            <th>Student Name</th>
+            <th>Roll No</th>
+            <th>Department & Section</th>
+            <th>Total Attendance Percentage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr onclick="toggleAttendanceDetails('attendance1')">
+            <td>1</td>
+            <td>Ravi</td>
+            <td>12345</td>
+            <td>CSE-A</td>
+            <td>85%</td>
+          </tr>
+          <tr onclick="toggleAttendanceDetails('attendance2')">
+            <td>2</td>
+            <td>Anita</td>
+            <td>12346</td>
+            <td>CSE-B</td>
+            <td>90%</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div id="attendance1" class="attendance-detail">
+        <h3>Ravi's Attendance Details (CSE-A)</h3>
+
+        <div class="pie-chart">
+          <canvas id="attendancePieChart"></canvas>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Sub-Class</th>
+              <th>Attendance Percentage</th>
+              <th>Classes Attended</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('dm-theory')"
+            >
+              <td>DM (Theory)</td>
+              <td>88%</td>
+              <td>22/25</td>
+            </tr>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('dbms-theory')"
+            >
+              <td>DBMS (Theory)</td>
+              <td>84%</td>
+              <td>20/24</td>
+            </tr>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('bfa-theory')"
+            >
+              <td>BEFA (Theory)</td>
+              <td>85%</td>
+              <td>21/24</td>
+            </tr>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('se-theory')"
+            >
+              <td>SE (Theory)</td>
+              <td>86%</td>
+              <td>23/26</td>
+            </tr>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('os-theory')"
+            >
+              <td>OS (Theory)</td>
+              <td>90%</td>
+              <td>24/25</td>
+            </tr>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('coi-theory')"
+            >
+              <td>COI (Theory)</td>
+              <td>88%</td>
+              <td>22/25</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="spacing"></div>
+
+        <h3>Lab Attendance</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Sub-Class</th>
+              <th>Attendance Percentage</th>
+              <th>Classes Attended</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('os-lab')"
+            >
+              <td>OS (Lab)</td>
+              <td>85%</td>
+              <td>20/24</td>
+            </tr>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('dbms-lab')"
+            >
+              <td>DBMS (Lab)</td>
+              <td>82%</td>
+              <td>19/23</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      function toggleAttendanceDetails(id) {
+        var details = document.getElementById(id);
+        details.style.display =
+          details.style.display === "none" ? "block" : "none";
+      }
+
+      function toggleSubClassDetails(id) {
+        var details = document.getElementById(id);
+        details.style.display =
+          details.style.display === "none" ? "block" : "none";
+      }
+
+      var ctx = document.getElementById("attendancePieChart").getContext("2d");
+      var attendancePieChart = new Chart(ctx, {
+        type: "doughnut",
+        data: {
+          labels: ["Theory Attendance", "Lab Attendance"],
+          datasets: [
+            {
+              label: "Attendance Percentage",
+              data: [85, 82],
+              backgroundColor: ["#ff6f00", "#f1c40f"],
+              borderColor: ["#ff6f00", "#f1c40f"],
+              borderWidth: 2,
+              cutout: "65%",
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: "top",
+            },
+            tooltip: {
+              callbacks: {
+                label: function (tooltipItem) {
+                  return tooltipItem.label + ": " + tooltipItem.raw + "%";
+                },
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
