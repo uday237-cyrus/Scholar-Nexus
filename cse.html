@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSE Course - Scholar Nexus</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #f4f4f9;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        padding: 20px;
+        background-image: url("cse2.jpg"); /* Set your desired background image here */
+        background-size: cover;
+        background-position: center;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1100px;
+        background: rgba(255, 255, 255, 0.1); /* Transparent white background */
+        border-radius: 12px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        backdrop-filter: blur(15px); /* This creates the glass effect */
+        -webkit-backdrop-filter: blur(15px); /* For Safari */
+        border: 1px solid rgba(255, 255, 255, 0.2); /* Light border for the glass effect */
+      }
+
+      /* Header */
+      .header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .header h1 {
+        font-size: 34px;
+        font-weight: 600;
+        color: #fff; /* White text to contrast with background */
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .header p {
+        font-size: 16px;
+        color: #ddd;
+        margin-top: 10px;
+      }
+
+      /* Section Styling */
+      .section {
+        margin-bottom: 30px;
+        background: rgba(236, 240, 241, 0.6); /* Semi-transparent background */
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px); /* Apply the blur effect */
+        -webkit-backdrop-filter: blur(10px); /* For Safari */
+      }
+
+      .section h2 {
+        font-size: 22px;
+        font-weight: 600;
+        color: #3498db;
+        margin-bottom: 15px;
+      }
+
+      .section p,
+      .section ul {
+        font-size: 16px;
+        line-height: 1.8;
+        color: #34495e;
+      }
+
+      ul {
+        padding-left: 20px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      /* Button Styling */
+      .btn {
+        background-color: #3498db;
+        color: #fff;
+        padding: 12px 25px;
+        border-radius: 8px;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        display: inline-block;
+      }
+
+      .btn:hover {
+        background-color: #2980b9;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .header h1 {
+          font-size: 28px;
+        }
+
+        .section h2 {
+          font-size: 20px;
+        }
+
+        .section p,
+        .section ul {
+          font-size: 14px;
+        }
+
+        .btn {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <h1>B.Tech in Computer Science and Engineering (CSE)</h1>
+        <p>A comprehensive guide to the program and career prospects</p>
+      </div>
+
+      <!-- Course Description Section -->
+      <div class="section">
+        <h2>1. Course Description</h2>
+        <p>
+          The B.Tech in Computer Science and Engineering program offers an
+          in-depth understanding of computer science fundamentals. The course
+          covers a wide range of topics, from programming and algorithms to
+          machine learning and data science.
+        </p>
+      </div>
+
+      <!-- Duration Section -->
+      <div class="section">
+        <h2>2. Duration</h2>
+        <p>
+          The B.Tech in CSE is a 4-year program, divided into 8 semesters,
+          offering a blend of theoretical knowledge and practical experience.
+        </p>
+      </div>
+
+      <!-- Subjects Covered Section -->
+      <div class="section">
+        <h2>3. Subjects Covered</h2>
+        <ul>
+          <li>Programming in C & C++</li>
+          <li>Data Structures & Algorithms</li>
+          <li>Operating Systems</li>
+          <li>Database Management Systems</li>
+          <li>Computer Networks</li>
+          <li>Web Technologies</li>
+          <li>Machine Learning</li>
+          <li>Cloud Computing</li>
+        </ul>
+      </div>
+
+      <!-- Faculty Involved Section -->
+      <div class="section">
+        <h2>4. Faculty Involved</h2>
+        <p>
+          The faculty members include experts in various domains such as
+          Software Engineering, AI, and Cloud Computing, ensuring a holistic
+          learning experience.
+        </p>
+      </div>
+
+      <!-- Career Opportunities Section -->
+      <div class="section">
+        <h2>5. Career Opportunities</h2>
+        <ul>
+          <li>Software Developer</li>
+          <li>Systems Engineer</li>
+          <li>Data Scientist</li>
+          <li>Machine Learning Engineer</li>
+          <li>Cloud Architect</li>
+          <li>Cybersecurity Expert</li>
+        </ul>
+      </div>
+
+      <!-- Apply Button -->
+      <div class="section" style="text-align: center">
+        <a href="#" class="btn">Apply Now</a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attendance - Scholar Nexus</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: url("student.jpg") no-repeat center center fixed; /* Set your background image */
+        background-size: cover; /* Ensure the image covers the entire screen */
+        color: #333;
+      }
+
+      .header {
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.4
+        ); /* Transparent background for title */
+        color: #4b0e3b; /* Adjusted text color */
+        text-align: center;
+        padding: 20px 20px; /* Reduced padding to make the title smaller */
+        font-size: 28px; /* Made the title smaller */
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px; /* Reduced letter spacing */
+        box-shadow: 0 4px 8px #000000;
+        backdrop-filter: blur(5px); /* Glassmorphism effect */
+      }
+
+      .container {
+        max-width: 960px;
+        margin: 50px auto;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px); /* Glassmorphism effect */
+        background: rgba(226, 86, 86, 0.43); /* Slight transparency */
+      }
+
+      .title {
+        text-align: center;
+        font-size: 28px;
+        color: #e67e22;
+        font-weight: bold;
+        margin-bottom: 30px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+
+      th,
+      td {
+        padding: 16px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #3498db;
+        color: white;
+        text-transform: uppercase;
+        font-size: 16px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      tr:hover {
+        background-color: #ecf0f1;
+        cursor: pointer;
+      }
+
+      .attendance-detail {
+        display: none;
+        margin-top: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px); /* Glass effect */
+        background: rgba(255, 255, 255, 0.4); /* Glass effect */
+      }
+
+      .attendance-detail h3 {
+        font-size: 24px;
+        color: #2980b9;
+      }
+
+      .attendance-detail table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+      }
+
+      .attendance-detail table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+
+      .attendance-detail th {
+        background-color: #2980b9;
+        color: white;
+        font-size: 14px;
+      }
+
+      .sub-class-option {
+        cursor: pointer;
+        color: #2980b9;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+
+      .sub-class-option:hover {
+        color: #3498db;
+        text-decoration: none;
+      }
+
+      .spacing {
+        margin-top: 40px;
+      }
+
+      .pie-chart {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .pie-chart canvas {
+        width: 220px !important;
+        height: 220px !important;
+        filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.4));
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          margin: 20px 10px;
+          padding: 25px;
+        }
+        .title {
+          font-size: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">DRK College</div>
+
+    <div class="container">
+      <div class="title">Attendance</div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Sl.No</th>
+            <th>Student Name</th>
+            <th>Roll No</th>
+            <th>Department & Section</th>
+            <th>Total Attendance Percentage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr onclick="toggleAttendanceDetails('attendance1')">
+            <td>1</td>
+            <td>Ravi</td>
+            <td>12345</td>
+            <td>CSE-A</td>
+            <td>85%</td>
+          </tr>
+          <tr onclick="toggleAttendanceDetails('attendance2')">
+            <td>2</td>
+            <td>Anita</td>
+            <td>12346</td>
+            <td>CSE-B</td>
+            <td>90%</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div id="attendance1" class="attendance-detail">
+        <h3>Ravi's Attendance Details (CSE-A)</h3>
+
+        <div class="pie-chart">
+          <canvas id="attendancePieChart"></canvas>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Sub-Class</th>
+              <th>Attendance Percentage</th>
+              <th>Classes Attended</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('dm-theory')"
+            >
+              <td>DM (Theory)</td>
+              <td>88%</td>
+              <td>22/25</td>
+            </tr>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('dbms-theory')"
+            >
+              <td>DBMS (Theory)</td>
+              <td>84%</td>
+              <td>20/24</td>
+            </tr>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('bfa-theory')"
+            >
+              <td>BEFA (Theory)</td>
+              <td>85%</td>
+              <td>21/24</td>
+            </tr>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('se-theory')"
+            >
+              <td>SE (Theory)</td>
+              <td>86%</td>
+              <td>23/26</td>
+            </tr>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('os-theory')"
+            >
+              <td>OS (Theory)</td>
+              <td>90%</td>
+              <td>24/25</td>
+            </tr>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('coi-theory')"
+            >
+              <td>COI (Theory)</td>
+              <td>88%</td>
+              <td>22/25</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="spacing"></div>
+
+        <h3>Lab Attendance</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Sub-Class</th>
+              <th>Attendance Percentage</th>
+              <th>Classes Attended</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('os-lab')"
+            >
+              <td>OS (Lab)</td>
+              <td>85%</td>
+              <td>20/24</td>
+            </tr>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('dbms-lab')"
+            >
+              <td>DBMS (Lab)</td>
+              <td>82%</td>
+              <td>19/23</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="attendance2" class="attendance-detail">
+        <h3>Anita's Attendance Details (CSE-B)</h3>
+
+        <div class="pie-chart">
+          <canvas id="attendancePieChartAnita"></canvas>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Sub-Class</th>
+              <th>Attendance Percentage</th>
+              <th>Classes Attended</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('dm-theory-anita')"
+            >
+              <td>DM (Theory)</td>
+              <td>92%</td>
+              <td>23/25</td>
+            </tr>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('dbms-theory-anita')"
+            >
+              <td>DBMS (Theory)</td>
+              <td>89%</td>
+              <td>21/24</td>
+            </tr>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('bfa-theory-anita')"
+            >
+              <td>BEFA (Theory)</td>
+              <td>90%</td>
+              <td>22/24</td>
+            </tr>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('se-theory-anita')"
+            >
+              <td>SE (Theory)</td>
+              <td>88%</td>
+              <td>23/26</td>
+            </tr>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('os-theory-anita')"
+            >
+              <td>OS (Theory)</td>
+              <td>91%</td>
+              <td>24/25</td>
+            </tr>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('coi-theory-anita')"
+            >
+              <td>COI (Theory)</td>
+              <td>89%</td>
+              <td>22/25</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="spacing"></div>
+
+        <h3>Lab Attendance</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Sub-Class</th>
+              <th>Attendance Percentage</th>
+              <th>Classes Attended</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('os-lab-anita')"
+            >
+              <td>OS (Lab)</td>
+              <td>90%</td>
+              <td>22/24</td>
+            </tr>
+            <tr
+              class="sub-class-option"
+              onclick="toggleSubClassDetails('dbms-lab-anita')"
+            >
+              <td>DBMS (Lab)</td>
+              <td>87%</td>
+              <td>20/23</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <script>
+        function toggleAttendanceDetails(id) {
+          var attendanceDetail = document.getElementById(id);
+          if (
+            attendanceDetail.style.display === "none" ||
+            attendanceDetail.style.display === ""
+          ) {
+            attendanceDetail.style.display = "block";
+          } else {
+            attendanceDetail.style.display = "none";
+          }
+        }
+
+        function toggleSubClassDetails(id) {
+          alert("Details for " + id + " will be shown here.");
+        }
+
+        // Pie chart for Ravi's Attendance
+        var ctx = document
+          .getElementById("attendancePieChart")
+          .getContext("2d");
+        var myPieChart = new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: ["Attended", "Missed"],
+            datasets: [
+              {
+                label: "Ravi's Attendance",
+                data: [80, 20],
+                backgroundColor: ["#3498db", "#e74c3c"],
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "top",
+              },
+            },
+          },
+        });
+
+        // Pie chart for Anita's Attendance
+        var ctxAnita = document
+          .getElementById("attendancePieChartAnita")
+          .getContext("2d");
+        var myPieChartAnita = new Chart(ctxAnita, {
+          type: "pie",
+          data: {
+            labels: ["Attended", "Missed"],
+            datasets: [
+              {
+                label: "Anita's Attendance",
+                data: [85, 15],
+                backgroundColor: ["#2980b9", "#e74c3c"],
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "top",
+              },
+            },
+          },
+        });
+      </script>
+    </div>
+  </body>
+</html>
