@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SCHOLAR NEXUS</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #eaeaea;
+        color: #333;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+        background-color: #fdfdfd;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        flex-wrap: wrap;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: bold;
+        color: #444;
+      }
+      nav {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+        position: relative;
+        flex-wrap: wrap;
+      }
+      .dropdown {
+        position: relative;
+      }
+      nav a,
+      .dropdown-toggle {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+      nav a:hover,
+      .dropdown-toggle:hover {
+        color: #c89f00;
+      }
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #fff;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        min-width: 150px;
+        padding: 10px 0;
+        z-index: 999;
+      }
+      .dropdown-menu a {
+        display: block;
+        padding: 8px 20px;
+        color: #333;
+        text-decoration: none;
+        transition: background-color 0.2s;
+      }
+      .dropdown-menu a:hover {
+        background-color: #f0f0f0;
+      }
+
+      .btn-login,
+      .btn-signup {
+        padding: 8px 16px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+      }
+      .btn-login {
+        background: none;
+        color: #000;
+      }
+      .btn-signup {
+        background-color: #e0b100;
+        color: #fff;
+        border-radius: 4px;
+      }
+
+      .hero {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        height: auto;
+        overflow: hidden;
+      }
+
+      .hero-img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+
+      .hero-options {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 40px;
+        background-color: rgba(255, 255, 255, 0.95);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 1100px;
+        margin: 20px auto 20px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-option {
+        max-width: 280px;
+        text-align: center;
+      }
+
+      .hero-option h3 {
+        color: #222;
+        margin-bottom: 10px;
+      }
+
+      .hero-option p {
+        color: #555;
+        font-size: 15px;
+      }
+
+      .center-image img {
+        width: 100%;
+        height: auto;
+        display: block; /* remove inline gaps */
+        object-fit: cover; /* crops neatly if aspect ratio differs */
+      }
+
+      .center-image {
+        width: 100%;
+        max-width: none;
+        padding: 0;
+        margin: 30px 0;
+      }
+
+      main {
+        padding: 40px;
+        text-align: center;
+      }
+
+      main h2 {
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+
+      main p {
+        font-size: 18px;
+        color: #666;
+      }
+
+      @media (max-width: 768px) {
+        header {
+          padding: 15px 20px;
+          flex-direction: column;
+        }
+        header h1 {
+          font-size: 20px;
+          margin-bottom: 10px;
+          text-align: center;
+        }
+        nav {
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 15px;
+        }
+        .hero {
+          height: auto;
+          padding: 0;
+        }
+        .hero-options {
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .hero-option {
+          max-width: 100%;
+        }
+        main h2 {
+          font-size: 22px;
+        }
+        main p {
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Drk College Guide</h1>
+      <nav>
+        <div class="dropdown">
+          <span class="dropdown-toggle">Admins</span>
+          <div class="dropdown-menu">
+            <a href="adminstrators.html">Administrators</a>
+            <a href="faculty.html">Faculty</a>
+            <a href="incharge.html">Incharge</a>
+            <a href="hod's.html">HOD's</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <span class="dropdown-toggle">Courses</span>
+          <div class="dropdown-menu">
+            <a href="cse.html">CSE</a>
+            <a href="ece.html">ECE</a>
+            <a href="cse-ai.html">CSE-AI</a>
+            <a href="cse-ml.html">CSE-ML</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <span class="dropdown-toggle">Departments</span>
+          <div class="dropdown-menu">
+            <a href="csedept.html">CSE Dept</a>
+            <a href="ecedept.html">ECE Dept</a>
+            <a href="mechanicaldept.html">Mechanical Dept</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <span class="dropdown-toggle">Students</span>
+          <div class="dropdown-menu">
+            <a href="studentdetails.html">Details</a>
+            <a href="attendance.html">Attendance</a>
+            <a href="timetable.html">Time Table</a>
+            <a href="notification.html">Notifications</a>
+          </div>
+        </div>
+        <a href="#login" class="btn-login">LOGIN</a>
+        <a href="#signup" class="btn-signup">SIGN UP</a>
+      </nav>
+    </header>
+
+    <div class="center-image">
+      <img src="image (1).png" alt="Scholar Nexus Banner" />
+    </div>
+
+    <div class="hero-options">
+      <div class="hero-option">
+        <h3>Find a course</h3>
+        <p>
+          Search by subject, course provider or location to find the right
+          course for you.
+        </p>
+      </div>
+      <div class="hero-option">
+        <h3>Find your interest</h3>
+        <p>
+          Search and discover the course that matches your interests and career
+          goals.
+        </p>
+      </div>
+      <div class="hero-option">
+        <h3>Find an open day</h3>
+        <p>
+          Search and book open days to experience life at your chosen
+          institution.
+        </p>
+      </div>
+    </div>
+
+    <main>
+      <h2>DRK College Guide</h2>
+      <p>
+        Welcome to your ultimate academic guide powered by Scholar Nexus. Stay
+        tuned for updates!
+      </p>
+    </main>
+
+    <script>
+      document.querySelectorAll(".dropdown-toggle").forEach((toggle) => {
+        toggle.addEventListener("click", () => {
+          const menu = toggle.nextElementSibling;
+          menu.style.display =
+            menu.style.display === "block" ? "none" : "block";
+
+          document.querySelectorAll(".dropdown-menu").forEach((m) => {
+            if (m !== menu) m.style.display = "none";
+          });
+        });
+      });
+
+      document.addEventListener("click", function (e) {
+        if (!e.target.closest(".dropdown")) {
+          document.querySelectorAll(".dropdown-menu").forEach((menu) => {
+            menu.style.display = "none";
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
