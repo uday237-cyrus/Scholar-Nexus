@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scholar Nexus</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #fff;
+        overflow-x: hidden;
+      }
+
+      .background {
+        background: url("background.jpeg") no-repeat center center/cover;
+        height: 100vh;
+        position: relative;
+        background-size: cover;
+        transition: background-position 0.5s ease-in-out;
+      }
+
+      .background:hover {
+        background-position: center 10%;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 30px;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(8px);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        box-sizing: border-box;
+        transition: background 0.3s ease;
+        flex-wrap: wrap;
+      }
+
+      header:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 28px;
+        font-family: "Merriweather", serif;
+        color: rgb(248, 248, 248);
+        letter-spacing: 1px;
+      }
+
+      .nav-left,
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .dropdown-toggle,
+      .kebab-toggle {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 8px 14px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+        transition: background 0.3s, box-shadow 0.3s, color 0.3s;
+        font-size: 15px;
+      }
+
+      .dropdown-toggle:hover,
+      .kebab-toggle:hover {
+        background: rgba(255, 255, 255, 0.2);
+        color: #f0c040;
+        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+      }
+
+      .dropdown-toggle,
+      .kebab-toggle,
+      .dropdown-menu a {
+        font-family: "Merriweather", serif;
+        text-decoration: none;
+        color: #ffffff;
+        font-weight: 500;
+        cursor: pointer;
+      }
+
+      .dropdown-menu,
+      .kebab-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        margin-top: 8px;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(8px);
+        padding: 10px 0;
+        border-radius: 10px;
+        min-width: 150px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+        z-index: 999;
+      }
+
+      .dropdown-menu a,
+      .kebab-menu a {
+        display: block;
+        padding: 10px 18px;
+        color: #fff;
+        text-decoration: none;
+        transition: background 0.3s, color 0.3s;
+        font-size: 14px;
+      }
+
+      .dropdown-menu a:hover,
+      .kebab-menu a:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #f0c040;
+      }
+
+      .centered-content {
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 30px 20px;
+        border-radius: 20px;
+        backdrop-filter: blur(4px);
+        max-width: 90%;
+        width: 500px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s, box-shadow 0.3s ease-in-out;
+      }
+
+      .centered-content:hover {
+        transform: translate(-50%, -50%) scale(1.05);
+        box-shadow: 0 12px 50px rgba(0, 0, 0, 0.5);
+      }
+
+      .centered-content h1 {
+        font-size: clamp(24px, 5vw, 42px);
+        margin-bottom: 20px;
+        color: #ffffff;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        animation: fadeIn 1s forwards 0.5s;
+      }
+
+      .centered-content p {
+        font-size: clamp(16px, 4vw, 18px);
+        margin-bottom: 20px;
+        color: #f0f0f0;
+        opacity: 0;
+        animation: fadeIn 1s forwards 1s;
+      }
+
+      .centered-content .btn-primary {
+        background-color: #c40000;
+        color: #fff;
+        padding: 10px 24px;
+        border: none;
+        border-radius: 25px;
+        font-size: 17px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background 0.3s, transform 0.3s;
+        display: inline-block;
+      }
+
+      .centered-content .btn-primary:hover {
+        background-color: #990000;
+        transform: scale(1.1);
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* RESPONSIVE DESIGN */
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          gap: 10px;
+          padding: 12px 20px;
+        }
+
+        .nav-left {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          gap: 15px;
+          flex-wrap: wrap; /* allows options to wrap in mobile */
+        }
+
+        .nav-right {
+          position: absolute; /* fixed positioning for kebab menu */
+          top: 16px;
+          right: 20px;
+          display: flex;
+          justify-content: flex-end;
+          width: auto;
+        }
+
+        .dropdown,
+        .dropdown-menu,
+        .kebab-menu {
+          width: auto;
+        }
+
+        .centered-content {
+          width: 90%;
+          padding: 25px 20px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        header h1 {
+          font-size: 22px;
+        }
+
+        .dropdown-toggle,
+        .kebab-toggle {
+          font-size: 14px;
+          padding: 6px 12px;
+        }
+
+        .centered-content h1 {
+          font-size: 24px;
+        }
+
+        .centered-content p {
+          font-size: 14px;
+        }
+
+        .centered-content .btn-primary {
+          font-size: 15px;
+          padding: 8px 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="background">
+      <header>
+        <h1>Scholar Nexus</h1>
+
+        <div class="nav-left">
+          <div class="dropdown">
+            <span class="dropdown-toggle">Admins</span>
+            <div class="dropdown-menu">
+              <a href="administrators.html">Administrators</a>
+              <a href="faculty.html">Faculty</a>
+              <a href="incharge.html">Incharge</a>
+              <a href="hods.html">HOD's</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <span class="dropdown-toggle">Courses</span>
+            <div class="dropdown-menu">
+              <a href="cse.html">CSE</a>
+              <a href="ece.html">ECE</a>
+              <a href="cse-ai.html">CSE-AI</a>
+              <a href="cse-ml.html">CSE-ML</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <span class="dropdown-toggle">Departments</span>
+            <div class="dropdown-menu">
+              <a href="csedept.html">CSE Dept</a>
+              <a href="ecedept.html">ECE Dept</a>
+              <a href="mechanicaldept.html">Mechanical Dept</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <span class="dropdown-toggle">Students</span>
+            <div class="dropdown-menu">
+              <a href="studentdetails.html">Details</a>
+              <a href="attendance.html">Attendance</a>
+              <a href="timetable.html">Time Table</a>
+              <a href="notification.html">Notifications</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-right">
+          <div class="kebab">
+            <span class="kebab-toggle">&#8942;</span>
+            <div class="kebab-menu">
+              <a href="login.html">Login</a>
+              <a href="signup.html">Signup</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="centered-content">
+        <h1>Welcome to Scholar Nexus</h1>
+        <p>Your Gateway to Academic Excellence</p>
+        <a href="#" class="btn-primary">Explore More</a>
+      </div>
+    </div>
+
+    <script>
+      document.querySelectorAll(".dropdown-toggle").forEach((toggle) => {
+        toggle.addEventListener("click", () => {
+          const menu = toggle.nextElementSibling;
+          const isOpen = menu.style.display === "block";
+
+          document
+            .querySelectorAll(".dropdown-menu")
+            .forEach((m) => (m.style.display = "none"));
+
+          if (!isOpen) {
+            menu.style.display = "block";
+          }
+        });
+      });
+
+      document.querySelector(".kebab-toggle").addEventListener("click", () => {
+        const kebabMenu = document.querySelector(".kebab-menu");
+        const isOpen = kebabMenu.style.display === "block";
+        document
+          .querySelectorAll(".kebab-menu")
+          .forEach((m) => (m.style.display = "none"));
+
+        if (!isOpen) {
+          kebabMenu.style.display = "block";
+        }
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".dropdown")) {
+          document.querySelectorAll(".dropdown-menu").forEach((menu) => {
+            menu.style.display = "none";
+          });
+        }
+        if (!e.target.closest(".kebab")) {
+          document.querySelectorAll(".kebab-menu").forEach((menu) => {
+            menu.style.display = "none";
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

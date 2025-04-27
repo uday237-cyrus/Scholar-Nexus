@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Details - DRK College</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: url("student.jpg") no-repeat center center fixed;
+        background-size: cover;
+        color: #333;
+      }
+      .header {
+        background-color: rgba(255, 255, 255, 0.4);
+        color: rgb(75, 14, 59);
+        text-align: center;
+        padding: 20px 20px;
+        font-size: 28px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(5px);
+      }
+      .container {
+        max-width: 960px;
+        margin: 50px auto;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.3);
+      }
+      .title {
+        text-align: center;
+        font-size: 28px;
+        color: #e67e22;
+        font-weight: bold;
+        margin-bottom: 30px;
+      }
+      .bio-data {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+      }
+      .bio-data img {
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        margin-right: 30px;
+      }
+      .bio-data div {
+        font-size: 18px;
+      }
+      .bio-data div span {
+        font-weight: bold;
+        color: #2980b9;
+      }
+      .section {
+        margin-bottom: 30px;
+        padding: 25px 30px;
+        background-color: rgba(255, 255, 255, 0.4);
+        border-radius: 14px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+      }
+      .section h2 {
+        font-size: 22px;
+        color: #2980b9;
+        margin-bottom: 12px;
+        border-left: 5px solid #2980b9;
+        padding-left: 10px;
+      }
+      .section p {
+        font-size: 17px;
+        line-height: 1.6;
+      }
+      @media (max-width: 768px) {
+        .bio-data {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        .bio-data img {
+          margin-bottom: 20px;
+        }
+        .container {
+          padding: 20px;
+          margin: 20px;
+        }
+        .title {
+          font-size: 24px;
+        }
+        .bio-data div {
+          font-size: 16px;
+        }
+        .section h2 {
+          font-size: 20px;
+        }
+        .section p {
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">DRK College</div>
+
+    <div class="container">
+      <div class="title">Student Details</div>
+
+      <!-- Bio Data Section -->
+      <div class="bio-data">
+        <img src="student-image.jpg" alt="Student Image" />
+        <!-- Placeholder Image -->
+        <div>
+          <p><span>Name:</span> John Doe</p>
+          <p><span>Roll Number:</span> 12345</p>
+          <p><span>Section:</span> A</p>
+          <p><span>Academic Year:</span> 2025</p>
+          <p><span>Department:</span> Computer Science Engineering (CSE)</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Overview</h2>
+        <p>
+          The Student Details page allows students to view their personal
+          information, course enrollments, and academic progress. Here, students
+          can access their profile, grades, and other relevant academic details.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>Student Profile</h2>
+        <p>
+          Students can view and update their personal details, including contact
+          information, course selection, and other relevant academic details.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
