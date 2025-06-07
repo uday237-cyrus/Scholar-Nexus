@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECE Course - Scholar Nexus</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #f4f4f9;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        padding: 20px;
+        background-image: url("cse2.jpg"); /* Set your desired background */
+        background-size: cover;
+        background-position: center;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1100px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .header h1 {
+        font-size: 34px;
+        font-weight: 600;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .header p {
+        font-size: 16px;
+        color: #ddd;
+        margin-top: 10px;
+      }
+
+      .section {
+        margin-bottom: 30px;
+        background: rgba(236, 240, 241, 0.6);
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      .section h2 {
+        font-size: 22px;
+        font-weight: 600;
+        color: #3498db;
+        margin-bottom: 15px;
+      }
+
+      .section p,
+      .section ul {
+        font-size: 16px;
+        line-height: 1.8;
+        color: #34495e;
+      }
+
+      ul {
+        padding-left: 20px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .btn {
+        background-color: #3498db;
+        color: #fff;
+        padding: 12px 25px;
+        border-radius: 8px;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        display: inline-block;
+      }
+
+      .btn:hover {
+        background-color: #2980b9;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .header h1 {
+          font-size: 30px;
+        }
+
+        .header p {
+          font-size: 14px;
+        }
+
+        .section {
+          padding: 20px;
+        }
+
+        .section h2 {
+          font-size: 20px;
+        }
+
+        .section p,
+        .section ul {
+          font-size: 15px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 20px;
+        }
+
+        .header h1 {
+          font-size: 26px;
+        }
+
+        .header p {
+          font-size: 14px;
+        }
+
+        .section h2 {
+          font-size: 18px;
+        }
+
+        .section p,
+        .section ul {
+          font-size: 14px;
+        }
+
+        .btn {
+          width: 100%;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header h1 {
+          font-size: 24px;
+        }
+
+        .header p {
+          font-size: 12px;
+        }
+
+        .section h2 {
+          font-size: 16px;
+        }
+
+        .section p,
+        .section ul {
+          font-size: 13px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <h1>B.Tech in Electronics and Communication Engineering (ECE)</h1>
+        <p>Explore the future of technology and communication</p>
+      </div>
+
+      <!-- Course Description Section -->
+      <div class="section">
+        <h2>1. Course Description</h2>
+        <p>
+          The B.Tech in Electronics and Communication Engineering program
+          focuses on designing, developing, and maintaining electronic devices
+          and communication systems. It blends theoretical knowledge with
+          hands-on experience in modern technologies like IoT, Embedded Systems,
+          and Wireless Communication.
+        </p>
+      </div>
+
+      <!-- Duration Section -->
+      <div class="section">
+        <h2>2. Duration</h2>
+        <p>
+          This is a 4-year full-time undergraduate program, divided into 8
+          semesters, structured to provide a deep understanding of core
+          electronics and communication principles.
+        </p>
+      </div>
+
+      <!-- Subjects Covered Section -->
+      <div class="section">
+        <h2>3. Subjects Covered</h2>
+        <ul>
+          <li>Electronic Devices and Circuits</li>
+          <li>Digital Electronics</li>
+          <li>Signals and Systems</li>
+          <li>Microprocessors and Microcontrollers</li>
+          <li>Communication Systems</li>
+          <li>VLSI Design</li>
+          <li>Embedded Systems</li>
+          <li>Internet of Things (IoT)</li>
+        </ul>
+      </div>
+
+      <!-- Faculty Involved Section -->
+      <div class="section">
+        <h2>4. Faculty Involved</h2>
+        <p>
+          The department boasts experienced faculty members specializing in
+          fields like VLSI, Communication Engineering, Embedded Systems, and
+          Wireless Networks, committed to providing quality education and
+          research opportunities.
+        </p>
+      </div>
+
+      <!-- Career Opportunities Section -->
+      <div class="section">
+        <h2>5. Career Opportunities</h2>
+        <ul>
+          <li>Electronics Engineer</li>
+          <li>Communication Engineer</li>
+          <li>Embedded Systems Developer</li>
+          <li>IoT Solutions Architect</li>
+          <li>Network Engineer</li>
+          <li>VLSI Design Engineer</li>
+          <li>Research and Development Engineer</li>
+        </ul>
+      </div>
+
+      <!-- Apply Button -->
+      <div class="section" style="text-align: center">
+        <a href="#" class="btn">Apply Now</a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attendance - Scholar Nexus</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: url("student.jpg") no-repeat center center fixed;
+        background-size: cover;
+        color: #333;
+      }
+
+      .header {
+        background-color: rgba(255, 255, 255, 0.4);
+        color: #4b0e3b;
+        text-align: center;
+        padding: 20px 20px;
+        font-size: 28px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 8px #000000;
+        backdrop-filter: blur(5px);
+      }
+
+      .container {
+        max-width: 960px;
+        margin: 50px auto;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        background: rgba(226, 86, 86, 0.43);
+      }
+
+      .title {
+        text-align: center;
+        font-size: 28px;
+        color: #e67e22;
+        font-weight: bold;
+        margin-bottom: 30px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+
+      th,
+      td {
+        padding: 16px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #3498db;
+        color: white;
+        text-transform: uppercase;
+        font-size: 16px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      tr:hover {
+        background-color: #ecf0f1;
+        cursor: pointer;
+      }
+
+      .attendance-detail {
+        display: none;
+        margin-top: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        background: rgba(
+          0,
+          0,
+          0,
+          0.6
+        ); /* Darker background with some transparency */
+        max-height: 80vh;
+        overflow-y: auto;
+        position: fixed;
+        top: 5%; /* Adjusted to move the dialog box slightly up */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 600px;
+        z-index: 100;
+      }
+
+      .attendance-detail h3 {
+        font-size: 24px;
+        color: #2980b9;
+      }
+
+      .attendance-detail table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+      }
+
+      .attendance-detail table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+
+      .attendance-detail th {
+        background-color: #2980b9;
+        color: white;
+        font-size: 14px;
+      }
+
+      .sub-class-option {
+        cursor: pointer;
+        color: #2980b9;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+
+      .sub-class-option:hover {
+        color: #3498db;
+        text-decoration: none;
+      }
+
+      .pie-chart {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .pie-chart canvas {
+        width: 220px !important;
+        height: 220px !important;
+        filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.4));
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        font-size: 18px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .close-btn:hover {
+        background-color: #c0392b;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          margin: 20px 10px;
+          padding: 25px;
+        }
+        .title {
+          font-size: 24px;
+        }
+
+        th,
+        td {
+          font-size: 14px;
+          padding: 12px;
+        }
+
+        .pie-chart canvas {
+          width: 180px !important;
+          height: 180px !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">DRK College</div>
+
+    <div class="container">
+      <div class="title">Attendance</div>
+      <div
+        class="button-group"
+        style="
+          display: flex;
+          justify-content: flex-end;
+          gap: 10px;
+          flex-wrap: wrap;
+          margin-bottom: 20px;
+        "
+      >
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search..."
+          style="
+            width: 250px;
+            padding: 10px 14px;
+            font-size: 14px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+          "
+          onkeyup="filterTable()"
+        />
+        <button
+          class="action-btn"
+          onclick="goBack()"
+          style="
+            background-color: #3498db;
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+          "
+        >
+          Back to Page
+        </button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Sl.No</th>
+            <th>Student Name</th>
+            <th>Roll No</th>
+            <th>Department & Section</th>
+            <th>Total Attendance Percentage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr onclick="toggleAttendanceDetails('attendance1')">
+            <td>1</td>
+            <td>Ravi</td>
+            <td>12345</td>
+            <td>CSE-C</td>
+            <td>85%</td>
+          </tr>
+          <tr onclick="toggleAttendanceDetails('attendance2')">
+            <td>2</td>
+            <td>Anita</td>
+            <td>12346</td>
+            <td>CSE-C</td>
+            <td>90%</td>
+          </tr>
+          <tr onclick="toggleAttendanceDetails('attendance3')">
+            <td>3</td>
+            <td>Amit</td>
+            <td>12347</td>
+            <td>CSE-C</td>
+            <td>92%</td>
+          </tr>
+          <tr onclick="toggleAttendanceDetails('attendance4')">
+            <td>4</td>
+            <td>Priya</td>
+            <td>12348</td>
+            <td>CSE-C</td>
+            <td>80%</td>
+          </tr>
+          <tr onclick="toggleAttendanceDetails('attendance5')">
+            <td>5</td>
+            <td>Manoj</td>
+            <td>12349</td>
+            <td>CSE-C</td>
+            <td>88%</td>
+          </tr>
+          <tr onclick="toggleAttendanceDetails('attendance6')">
+            <td>6</td>
+            <td>Ritika</td>
+            <td>12350</td>
+            <td>CSE-C</td>
+            <td>85%</td>
+          </tr>
+          <tr onclick="toggleAttendanceDetails('attendance7')">
+            <td>7</td>
+            <td>Vikram</td>
+            <td>12351</td>
+            <td>CSE-C</td>
+            <td>78%</td>
+          </tr>
+          <tr onclick="toggleAttendanceDetails('attendance8')">
+            <td>8</td>
+            <td>Deepa</td>
+            <td>12352</td>
+            <td>CSE-C</td>
+            <td>91%</td>
+          </tr>
+          <tr onclick="toggleAttendanceDetails('attendance9')">
+            <td>9</td>
+            <td>Sunil</td>
+            <td>12353</td>
+            <td>CSE-C</td>
+            <td>84%</td>
+          </tr>
+          <tr onclick="toggleAttendanceDetails('attendance10')">
+            <td>10</td>
+            <td>Kavya</td>
+            <td>12354</td>
+            <td>CSE-C</td>
+            <td>89%</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Attendance Details Box for Each Student -->
+      <!-- Attendance Details Boxes for Students (Ravi, Anita, etc.) -->
+
+      <!-- Example for Ravi -->
+      <div id="attendance1" class="attendance-detail">
+        <button
+          class="close-btn"
+          onclick="toggleAttendanceDetails('attendance1')"
+        >
+          X
+        </button>
+        <h3>Ravi's Attendance Details (CSE-C)</h3>
+
+        <div class="pie-chart">
+          <canvas id="attendancePieChart"></canvas>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Sub-Class</th>
+              <th>Attendance Percentage</th>
+              <th>Classes Attended</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="sub-class-option">
+              <td>DM (Theory)</td>
+              <td>88%</td>
+              <td>22/25</td>
+            </tr>
+            <tr class="sub-class-option">
+              <td>DBMS (Theory)</td>
+              <td>84%</td>
+              <td>20/24</td>
+            </tr>
+            <tr class="sub-class-option">
+              <td>BEFA (Theory)</td>
+              <td>85%</td>
+              <td>21/24</td>
+            </tr>
+            <tr class="sub-class-option">
+              <td>SE (Theory)</td>
+              <td>86%</td>
+              <td>23/26</td>
+            </tr>
+            <tr class="sub-class-option">
+              <td>OS (Theory)</td>
+              <td>90%</td>
+              <td>24/25</td>
+            </tr>
+            <tr class="sub-class-option">
+              <td>COI (Theory)</td>
+              <td>88%</td>
+              <td>22/25</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Repeat similar blocks for other students (Anita, Amit, etc.) -->
+    </div>
+    <script>
+      function filterTable() {
+        const input = document.getElementById("searchInput");
+        const filter = input.value.toLowerCase();
+        const rows = document.querySelectorAll("table tbody tr");
+
+        rows.forEach((row) => {
+          const text = row.innerText.toLowerCase();
+          row.style.display = text.includes(filter) ? "" : "none";
+        });
+      }
+
+      function goBack() {
+        window.history.back();
+      }
+    </script>
+
+    <script>
+      function toggleAttendanceDetails(attendanceId) {
+        const details = document.getElementById(attendanceId);
+        details.style.display =
+          details.style.display === "none" || details.style.display === ""
+            ? "block"
+            : "none";
+      }
+
+      const ctx = document
+        .getElementById("attendancePieChart")
+        .getContext("2d");
+      new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: ["Attended", "Missed"],
+          datasets: [
+            {
+              data: [85, 15],
+              backgroundColor: ["#3498db", "#e74c3c"],
+            },
+          ],
+        },
+      });
+    </script>
+  </body>
+</html>

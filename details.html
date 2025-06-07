@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student List - DRK College</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: url("student.jpg") no-repeat center center fixed;
+        background-size: cover;
+        color: #333;
+      }
+
+      .header {
+        background-color: rgba(226, 81, 112, 0.26);
+        color: #ecf0f1;
+        text-align: center;
+        padding: 40px 20px;
+        font-size: 40px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 50px auto;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+      }
+
+      .title {
+        text-align: center;
+        font-size: 24px;
+        color: #2980b9;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .button-group {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-bottom: 20px;
+        padding-right: 10px;
+        flex-wrap: wrap;
+      }
+
+      .action-btn {
+        background-color: #3498db;
+        color: white;
+        padding: 10px 16px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .action-btn:hover {
+        background-color: #2980b9;
+      }
+
+      .student-list {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      .student-list th,
+      .student-list td {
+        padding: 16px;
+        text-align: center;
+        border: 1px solid #ddd;
+      }
+
+      .student-list th {
+        background-color: rgba(52, 152, 219, 0.8);
+        color: white;
+        text-transform: uppercase;
+        font-size: 16px;
+      }
+
+      .student-list tr:nth-child(even) {
+        background-color: #3f1031;
+      }
+
+      .student-list tr:hover {
+        background-color: rgba(236, 240, 241, 0.7);
+        cursor: pointer;
+      }
+
+      .student-list td {
+        color: white;
+        font-weight: bold;
+      }
+
+      .student-list td img {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .dialog-box {
+        background-color: white;
+        padding: 30px;
+        width: 60%;
+        max-width: 800px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        overflow-y: auto;
+      }
+
+      .dialog-box h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #2980b9;
+      }
+
+      .dialog-box .details {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f8f8f8;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        color: black;
+      }
+
+      .close-btn {
+        background-color: #e74c3c;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        margin-top: 20px;
+      }
+
+      .close-btn:hover {
+        background-color: #c0392b;
+      }
+
+      @media (max-width: 768px) {
+        .student-list th,
+        .student-list td {
+          padding: 12px;
+          font-size: 14px;
+        }
+
+        .title {
+          font-size: 28px;
+        }
+
+        .dialog-box {
+          width: 80%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">DRK College - Student List</div>
+
+    <div class="container">
+      <div class="title">Student Details</div>
+
+      <div class="button-group">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search..."
+          style="
+            width: 250px;
+            padding: 10px 14px;
+            font-size: 14px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+          "
+          onkeyup="filterTable()"
+        />
+
+        <button class="action-btn" onclick="goBack()">Back to Page</button>
+      </div>
+
+      <table class="student-list">
+        <thead>
+          <tr>
+            <th>Sl.No</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Branch</th>
+            <th>Section</th>
+            <th>Roll No</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            onclick="showDetails('Uday', '23U51A05A8', 'CSE', 'C', '2nd Year', '2023')"
+          >
+            <td>1</td>
+            <td>Uday</td>
+            <td><img src="uday.jpg" alt="Uday" /></td>
+            <td>CSE</td>
+            <td>C</td>
+            <td>23U51A05A8</td>
+          </tr>
+          <tr
+            onclick="showDetails('Alice', '23U51A06A9', 'CSE', 'C', '2nd Year', '2023')"
+          >
+            <td>2</td>
+            <td>Alice</td>
+            <td><img src="alice.jpg" alt="Alice" /></td>
+            <td>CSE</td>
+            <td>C</td>
+            <td>23U51A06A9</td>
+          </tr>
+          <tr
+            onclick="showDetails('Bob', '23U51A07A0', 'CSE', 'C', '2nd Year', '2023')"
+          >
+            <td>3</td>
+            <td>Bob</td>
+            <td><img src="bob.jpg" alt="Bob" /></td>
+            <td>CSE</td>
+            <td>C</td>
+            <td>23U51A07A0</td>
+          </tr>
+          <tr
+            onclick="showDetails('Charlie', '23U51A08A1', 'CSE', 'C', '2nd Year', '2023')"
+          >
+            <td>4</td>
+            <td>Charlie</td>
+            <td><img src="charlie.jpg" alt="Charlie" /></td>
+            <td>CSE</td>
+            <td>C</td>
+            <td>23U51A08A1</td>
+          </tr>
+          <tr
+            onclick="showDetails('David', '23U51A09A2', 'CSE', 'C', '2nd Year', '2023')"
+          >
+            <td>5</td>
+            <td>David</td>
+            <td><img src="david.jpg" alt="David" /></td>
+            <td>CSE</td>
+            <td>C</td>
+            <td>23U51A09A2</td>
+          </tr>
+          <tr
+            onclick="showDetails('Eve', '23U51A10A3', 'CSE', 'C', '2nd Year', '2023')"
+          >
+            <td>6</td>
+            <td>Eve</td>
+            <td><img src="eve.jpg" alt="Eve" /></td>
+            <td>CSE</td>
+            <td>C</td>
+            <td>23U51A10A3</td>
+          </tr>
+          <tr
+            onclick="showDetails('Frank', '23U51A11A4', 'CSE', 'C', '2nd Year', '2023')"
+          >
+            <td>7</td>
+            <td>Frank</td>
+            <td><img src="frank.jpg" alt="Frank" /></td>
+            <td>CSE</td>
+            <td>C</td>
+            <td>23U51A11A4</td>
+          </tr>
+          <tr
+            onclick="showDetails('Grace', '23U51A12A5', 'CSE', 'C', '2nd Year', '2023')"
+          >
+            <td>8</td>
+            <td>Grace</td>
+            <td><img src="grace.jpg" alt="Grace" /></td>
+            <td>CSE</td>
+            <td>C</td>
+            <td>23U51A12A5</td>
+          </tr>
+          <tr
+            onclick="showDetails('Heidi', '23U51A13A6', 'CSE', 'C', '2nd Year', '2023')"
+          >
+            <td>9</td>
+            <td>Heidi</td>
+            <td><img src="heidi.jpg" alt="Heidi" /></td>
+            <td>CSE</td>
+            <td>C</td>
+            <td>23U51A13A6</td>
+          </tr>
+          <tr
+            onclick="showDetails('Ivy', '23U51A14A7', 'CSE', 'C', '2nd Year', '2023')"
+          >
+            <td>10</td>
+            <td>Ivy</td>
+            <td><img src="ivy.jpg" alt="Ivy" /></td>
+            <td>CSE</td>
+            <td>C</td>
+            <td>23U51A14A7</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="overlay" id="overlay">
+      <div class="dialog-box" id="dialog-box">
+        <h2>Student Details</h2>
+        <div class="details"></div>
+
+        <button class="close-btn" onclick="closeDetails()">Close</button>
+      </div>
+    </div>
+
+    <script>
+      function filterTable() {
+        const input = document.getElementById("searchInput");
+        const filter = input.value.toLowerCase();
+        const rows = document.querySelectorAll(".student-list tbody tr");
+
+        rows.forEach((row) => {
+          const text = row.innerText.toLowerCase();
+          row.style.display = text.includes(filter) ? "" : "none";
+        });
+      }
+
+      function goBack() {
+        window.history.back();
+      }
+
+      function showDetails(name, roll, branch, section, year, academicYear) {
+        const detailsHTML = `
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Roll No:</strong> ${roll}</p>
+          <p><strong>Branch:</strong> ${branch}</p>
+          <p><strong>Section:</strong> ${section}</p>
+          <p><strong>Year:</strong> ${year}</p>
+          <p><strong>Academic Year:</strong> ${academicYear}</p>
+        `;
+
+        document.querySelector("#dialog-box .details").innerHTML = detailsHTML;
+        document.getElementById("overlay").style.display = "flex";
+      }
+
+      function closeDetails() {
+        document.getElementById("overlay").style.display = "none";
+      }
+    </script>
+  </body>
+</html>

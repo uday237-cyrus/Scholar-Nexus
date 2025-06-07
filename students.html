@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Students - Scholar Nexus</title>
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .background {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+    }
+
+    #bgVideo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      object-position: center;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .video-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 30px;
+      background: transparent;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 10;
+      box-sizing: border-box;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+      font-family: "Merriweather", serif;
+      letter-spacing: 1px;
+      color: #f8f8f8;
+    }
+
+    .back-btn {
+      background: transparent;
+      border: 2px solid rgba(255, 215, 0, 0.6);
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-family: "Orbitron", sans-serif;
+      font-size: 15px;
+      color: rgba(255, 215, 0, 0.7);
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
+      text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+      transition: all 0.3s ease-in-out;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      color: #ffeb3b;
+      border-color: gold;
+      box-shadow: 0 0 12px gold, 0 0 25px gold, 0 0 40px gold;
+      transform: scale(1.07);
+      text-shadow: 0 0 12px gold;
+    }
+
+    .options-bar {
+      position: absolute;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      z-index: 999;
+    }
+
+    .options-bar a {
+      background: transparent;
+      border: 2px solid rgba(255, 215, 0, 0.6);
+      padding: 10px 24px;
+      border-radius: 12px;
+      font-family: "Orbitron", sans-serif;
+      font-size: 15px;
+      color: rgba(255, 215, 0, 0.7);
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
+      text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+      transition: all 0.3s ease-in-out;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .options-bar a:hover {
+      color: #ffeb3b;
+      border-color: gold;
+      box-shadow: 0 0 12px gold, 0 0 25px gold, 0 0 40px gold;
+      transform: scale(1.07);
+      text-shadow: 0 0 12px gold;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      header h1 {
+        font-size: 22px;
+      }
+
+      .options-bar {
+        flex-direction: column;
+        align-items: center;
+        top: 90px;
+      }
+
+      .options-bar a {
+        width: 160px;
+        text-align: center;
+      }
+
+      .back-btn {
+        align-self: flex-end;
+      }
+    }
+
+    .central-info {
+      position: absolute;
+      top: 250px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      width: 80%;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      opacity: 0;
+      animation: fadeIn 0.8s forwards;
+    }
+
+    .central-info h2 {
+      font-family: "Merriweather", serif;
+      margin-bottom: 15px;
+      color: #f0c040;
+    }
+
+    .central-info p {
+      color: #ddd;
+      margin-bottom: 20px;
+    }
+
+    .info-cards-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .info-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 15px;
+      border-radius: 10px;
+      width: 150px;
+    }
+
+    .info-card h3 {
+      font-size: 1.1em;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .card-icon {
+      font-size: 1.2em;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(-50%);
+      }
+    }
+
+    .dialog-box {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.9);
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      z-index: 1001;
+      display: none;
+      max-width: 90vw;
+      max-height: 70vh;
+      overflow-y: auto;
+      text-align: center;
+    }
+
+    .dialog-box h2 {
+      margin-top: 0;
+      font-family: "Merriweather", serif;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 15px;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: "Merriweather", serif;
+    }
+
+    .card:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #f0c040;
+      transform: scale(1.05);
+    }
+
+    .close-dialog-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5em;
+      color: #fff;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .close-dialog-btn:hover {
+      color: #f0c040;
+    }
+
+    .sticker-strip {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+      height: 40px;
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      font-size: 16px;
+      font-family: "Merriweather", serif;
+    }
+
+    .sticker-track {
+      display: inline-block;
+      white-space: nowrap;
+      padding-left: 100%;
+      animation: ticker 20s linear infinite;
+    }
+
+    .sticker-strip:hover .sticker-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes ticker {
+      0% {
+        transform: translateX(0%);
+      }
+
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="background">
+    <video autoplay muted playsinline id="bgVideo" loop>
+      <source src="vid10.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay"></div>
+  </div>
+
+  <header>
+    <h1>Students</h1>
+    <a href="index.html" class="back-btn">Back to Home</a>
+  </header>
+
+  <div class="options-bar">
+    <a href="#" id="details-btn">Details</a>
+    <a href="#" id="attendance-btn">Attendance</a>
+    <a href="#" id="timetable-btn">Time Table</a>
+  </div>
+
+  <div class="central-info">
+    <h2>Welcome to the Student Portal</h2>
+    <p>Your one-stop hub for accessing student details, attendance records, and class timetables. Select an option above to get started.</p>
+    <div class="info-cards-container">
+      <div class="info-card">
+        <h3><span class="card-icon">&#128196;</span> Quick Access</h3>
+        <p>Find what you need faster.</p>
+      </div>
+      <div class="info-card">
+        <h3><span class="card-icon">&#128274;</span> Stay Updated</h3>
+        <p>Keep track of your progress.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialog-box" id="dialog">
+    <span class="close-dialog-btn" id="close-dialog">&#10006;</span>
+    <h2 id="dialog-title">Select Year</h2>
+    <div class="card-grid" id="dialog-content"></div>
+  </div>
+
+  <div class="sticker-strip">
+    <div class="sticker-track">
+      <span>🌟"Education is not preparation for life; education is life itself." &nbsp;&nbsp;&nbsp;</span>
+      <span>🎓 Admissions Open - Apply Now! &nbsp;&nbsp;&nbsp;</span>
+      <span>📸 <img src="sticker1.png" alt="Event" style="height:20px; vertical-align:middle;"> Photography Contest: May 5! &nbsp;&nbsp;&nbsp;</span>
+      <span>💡 "Learning never exhausts the mind." &nbsp;&nbsp;&nbsp;</span>
+      <span>🔥 Hackathon Registrations Close May 3! &nbsp;&nbsp;&nbsp;</span>
+      <span>🏆 Quiz Championship Finals – May 7 &nbsp;&nbsp;&nbsp;</span>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const dialog = document.getElementById("dialog");
+      const dialogTitle = document.getElementById("dialog-title");
+      const dialogContent = document.getElementById("dialog-content");
+      const centralInfo = document.querySelector(".central-info");
+
+      const years = Array.from({ length: 2025 - 2004 + 1 }, (_, i) => 2004 + i);
+      const branches = ["CSE", "ECE", "EEE", "MECH", "CIVIL", "IT"];
+      const sections = ["Section A", "Section B", "Section C"];
+
+      function openDialog(options, title, nextStep) {
+        dialogTitle.textContent = title;
+        dialogContent.innerHTML = "";
+
+        options.forEach((option) => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.textContent = option;
+          card.onclick = () => {
+            if (nextStep) nextStep(option);
+          };
+          dialogContent.appendChild(card);
+        });
+
+        dialog.style.display = "block";
+        centralInfo.style.display = "none";
+      }
+
+      function closeDialog() {
+        dialog.style.display = "none";
+        centralInfo.style.display = "block";
+      }
+
+      function startSelectionFlow(targetPage) {
+        openDialog(years, `Select Year`, (selectedYear) => {
+          openDialog(branches, `Year: ${selectedYear} → Select Branch`, (selectedBranch) => {
+            openDialog(sections, `Branch: ${selectedBranch} → Select Section`, (selectedSection) => {
+              const query = `?year=${selectedYear}&branch=${selectedBranch}&section=${selectedSection}`;
+              window.location.href = `${targetPage}${query}`;
+              closeDialog();
+            });
+          });
+        });
+      }
+
+      document.getElementById("details-btn").onclick = () => startSelectionFlow("details.html");
+      document.getElementById("attendance-btn").onclick = () => startSelectionFlow("attendance.html");
+      document.getElementById("timetable-btn").onclick = () => startSelectionFlow("timetable.html");
+      document.getElementById("close-dialog").onclick = closeDialog;
+    });
+  </script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Scholar Nexus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+      color: #fff;
+    }
+
+    #background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .overlay-content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 30px;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+      font-family: "Merriweather", serif;
+      color: #f8f8f8;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .dropdown, .kebab {
+      position: relative;
+    }
+
+    .dropdown-toggle, .kebab-toggle {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 8px 16px;
+      border-radius: 30px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      border: none;
+    }
+
+    .dropdown-toggle:hover, .kebab-toggle:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+    }
+
+    .dropdown-menu, .kebab-menu {
+      display: none;
+      position: absolute;
+      top: 110%;
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      padding: 10px;
+      border-radius: 10px;
+      min-width: 150px;
+      z-index: 999;
+    }
+
+    .dropdown-menu a, .kebab-menu a {
+      display: block;
+      padding: 10px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-menu a:hover, .kebab-menu a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: scale(1.03);
+    }
+
+    .centered-content {
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px 20px;
+      border-radius: 20px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .centered-content h1 {
+      font-size: 36px;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .centered-content p {
+      font-size: 18px;
+      margin-bottom: 24px;
+      color: #f0f0f0;
+    }
+
+    .btn-primary {
+      background-color: #d90429;
+      color: white;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(217, 4, 41, 0.4);
+    }
+
+    .btn-primary:hover {
+      background-color: #a90322;
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(169, 3, 34, 0.5);
+    }
+
+    .btn-primary:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(217, 4, 41, 0.3);
+    }
+
+    @media (max-width: 600px) {
+      .centered-content h1 {
+        font-size: 24px;
+      }
+
+      .centered-content p {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Video -->
+  <video autoplay muted id="background-video">
+    <source id="video-source" src="vid6.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Page Content -->
+  <div class="overlay-content">
+    <header>
+      <h1>Scholar Nexus</h1>
+      <div class="nav-left">
+        <div class="dropdown">
+          <button class="dropdown-toggle">Admins</button>
+          <div class="dropdown-menu">
+            <a href="authorities.html">Authorities</a>
+            <a href="management.html">Management</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropdown-toggle">Courses</button>
+          <div class="dropdown-menu">
+            <a href="cse.html">CSE</a>
+            <a href="ece.html">ECE</a>
+            <a href="cse-ai.html">CSE-AI</a>
+            <a href="cse-ml.html">CSE-ML</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropdown-toggle">Staff</button>
+          <div class="dropdown-menu">
+            <a href="hods.html">HOD's</a>
+            <a href="faculty.html">Faculty</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropdown-toggle">Students</button>
+          <div class="dropdown-menu">
+            <a href="students.html">More</a>
+          </div>
+        </div>
+      </div>
+      <div class="kebab">
+        <button class="kebab-toggle">⋮</button>
+        <div class="kebab-menu">
+          <a href="notifications.html">View Notifications</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="centered-content">
+      <h1>Welcome to Scholar Nexus</h1>
+      <p>Your Gateway to Academic Excellence</p>
+      <a href="#" class="btn-primary">Explore More</a>
+    </div>
+  </div>
+
+  <!-- Switch videos on end -->
+  <script>
+    const video = document.getElementById("background-video");
+    const source = document.getElementById("video-source");
+    const sources = ["vid6.mp4", "vid7.mp4", "vid10.mp4", "vid11.mp4"];
+    let index = 0;
+
+    video.addEventListener("ended", () => {
+      index = (index + 1) % sources.length;
+      source.src = sources[index];
+      video.load();
+      video.play();
+    });
+  </script>
+
+  <!-- Dropdown interactivity -->
+  <script>
+    document.querySelectorAll(".dropdown-toggle").forEach(toggle => {
+      toggle.addEventListener("click", () => {
+        const menu = toggle.nextElementSibling;
+        const isVisible = menu.style.display === "block";
+        document.querySelectorAll(".dropdown-menu").forEach(m => m.style.display = "none");
+        if (!isVisible) menu.style.display = "block";
+      });
+    });
+
+    document.querySelector(".kebab-toggle").addEventListener("click", () => {
+      const menu = document.querySelector(".kebab-menu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".dropdown, .kebab")) {
+        document.querySelectorAll(".dropdown-menu, .kebab-menu").forEach(menu => {
+          menu.style.display = "none";
+        });
+      }
+    });
+  </script>
+</body>
+</html>

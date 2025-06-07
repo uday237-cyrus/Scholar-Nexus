@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrators - Scholar Nexus</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: url("background 2.jpg") no-repeat center center fixed;
+        background-size: cover;
+        color: #333;
+        overflow-x: hidden;
+      }
+      .container {
+        display: flex;
+        max-width: 1000px;
+        margin: 40px auto;
+        background-color: rgba(255, 255, 255, 0.15); /* More transparency */
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(15px); /* Stronger blur effect */
+      }
+      .sidebar {
+        width: 30%;
+        padding: 30px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.2
+        ); /* More transparency for sidebar */
+        backdrop-filter: blur(8px); /* Stronger glass effect for sidebar */
+        border-right: 2px solid rgba(255, 255, 255, 0.4); /* Subtle border */
+      }
+      .sidebar h2 {
+        font-size: 28px; /* A bit bigger for respect */
+        margin-top: 0;
+        color: #329b65; /* Dark Green */
+        font-weight: bold;
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+      }
+
+      .sidebar p {
+        font-size: 14px;
+        line-height: 1.5;
+        text-align: center;
+        color: #fff;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); /* Added shadow to highlight text */
+      }
+      .contact {
+        margin-top: 30px;
+        text-align: center;
+      }
+      .contact p {
+        margin: 8px 0;
+      }
+      .profile-pic img {
+        border-radius: 50%;
+        margin-bottom: 20px;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+      }
+      .main-content {
+        padding: 30px;
+        width: 70%;
+        color: #2c3e50;
+        backdrop-filter: blur(8px); /* Stronger blur effect for content area */
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.2
+        ); /* More transparency for main content */
+      }
+      .main-content h1 {
+        margin-top: 0;
+        font-size: 36px; /* Slightly bigger for more importance */
+        color: #339663; /* Dark Green */
+        font-weight: bold;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Stronger shadow for better clarity */
+        letter-spacing: 1px; /* Makes it feel premium */
+      }
+
+      .section {
+        margin-bottom: 30px;
+      }
+      .section h3 {
+        margin-bottom: 10px;
+        color: #329b65; /* Same Dark Green */
+        font-size: 24px;
+        font-weight: bold;
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); /* Stronger shadow for clarity */
+        letter-spacing: 0.5px;
+      }
+
+      .section p {
+        margin: 5px 0;
+        font-size: 16px;
+        color: #fff;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); /* Added shadow to highlight text */
+      }
+      .skill-level {
+        display: flex;
+        gap: 5px;
+      }
+      .dot {
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        background-color: #ccc;
+      }
+      .dot.filled {
+        background-color: #5e8b7e;
+      }
+      .btn-primary {
+        background-color: #c40000;
+        color: #fff;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 30px;
+        font-size: 18px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-top: 20px;
+        display: inline-block;
+      }
+      .btn-primary:hover {
+        background-color: #990000;
+      }
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+          max-width: 100%;
+          margin: 10px auto;
+        }
+        .sidebar {
+          width: 100%;
+          padding: 20px;
+          margin-bottom: 20px;
+        }
+        .main-content {
+          width: 100%;
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <div class="profile-pic">
+          <img src="https://via.placeholder.com/100" alt="Profile Picture" />
+        </div>
+        <h2>Dr. Ramesh Kumar</h2>
+        <p>
+          Experienced Principal with a demonstrated history in academic
+          leadership and education management.
+        </p>
+
+        <div class="contact">
+          <p>
+            <strong>Phone:</strong><br />
+            +91-9876543210
+          </p>
+          <p>
+            <strong>Email:</strong><br />
+            ramesh.kumar@drkcollege.edu
+          </p>
+          <p>
+            <strong>Location:</strong><br />
+            Hyderabad, India
+          </p>
+        </div>
+      </div>
+      <div class="main-content">
+        <h1>Principal</h1>
+
+        <div class="section">
+          <h3>Professional Experience</h3>
+          <p><strong>Principal</strong> — DRK College (2010–Present)</p>
+          <p>
+            Leading institution-wide initiatives to foster academic excellence,
+            accreditation, and faculty development.
+          </p>
+        </div>
+
+        <div class="section">
+          <h3>Education</h3>
+          <p>Ph.D. in Education Management</p>
+        </div>
+
+        <div class="section">
+          <h3>Certifications</h3>
+          <p>Certified Academic Leader - NTA</p>
+          <p>Advanced Leadership Training - AICTE</p>
+        </div>
+
+        <div class="section">
+          <h3>Skills</h3>
+          <p>Leadership</p>
+          <div class="skill-level">
+            <span class="dot filled"></span>
+            <span class="dot filled"></span>
+            <span class="dot filled"></span>
+            <span class="dot filled"></span>
+            <span class="dot"></span>
+          </div>
+          <p>Communication</p>
+          <div class="skill-level">
+            <span class="dot filled"></span>
+            <span class="dot filled"></span>
+            <span class="dot filled"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+        <a href="#" class="btn-primary">Contact</a>
+      </div>
+    </div>
+  </body>
+</html>
